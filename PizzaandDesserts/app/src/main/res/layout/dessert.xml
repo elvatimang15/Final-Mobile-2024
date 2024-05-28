@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/card_post"
+    app:cardCornerRadius="15dp"
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp"
+    android:padding="8dp">
+    <ImageView
+        android:id="@+id/imgd"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_launcher_background"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/menud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menu: "
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/hargad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/menud"
+                android:text="Harga: "/>
+
+            <TextView
+                android:id="@+id/jumlahd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hargad"
+                android:text="Jumlah: "/>
+
+            <TextView
+                android:id="@+id/deskripsid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/jumlahd"
+                android:text="Deskripsi: "/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/named"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Name" />
+            <TextView
+                android:id="@+id/priced"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/named"
+                android:text="Price" />
+            <TextView
+                android:id="@+id/quand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/priced"
+                android:text="Quantity" />
+            <TextView
+                android:id="@+id/descd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/quand"
+                android:text="Description" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:paddingTop="8dp">
+
+        <Button
+            android:id="@+id/btn_kurangd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:backgroundTint="#E3B174"
+            android:text="-" />
+
+        <TextView
+            android:id="@+id/order_quantityd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="0"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_tambahd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#E3B174"
+            android:textSize="16sp"
+            android:text="+" />
+    </LinearLayout>
+</LinearLayout>
