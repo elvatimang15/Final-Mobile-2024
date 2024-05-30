@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_register"
+    tools:context=".RegisterActivity">
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:background="#DCAFAAAA"
+        app:cardCornerRadius="10dp">
+
+        <TextView
+            android:id="@+id/regist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="REGISTER"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+
+        <View
+            android:id="@+id/view_regist"
+            android:layout_width="260dp"
+            android:layout_height="2dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/regist"/>
+
+        <EditText
+            android:id="@+id/nama_regist"
+            android:layout_width="250dp"
+            android:layout_height="48dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/view_regist"
+            android:layout_marginTop="15dp"
+            android:drawableLeft="@drawable/baseline_account_circle_24"
+            android:hint="Nama"/>
+
+        <EditText
+            android:id="@+id/pass_regist"
+            android:layout_width="250dp"
+            android:layout_height="48dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/nama_regist"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/baseline_security_24"
+            android:hint="Password"/>
+
+        <Button
+            android:id="@+id/btn_regist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/pass_regist"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="#F87F59"
+            android:text="REGISTER" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/punyaakun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Punya akun?"
+                android:layout_marginTop="315dp"
+                android:textColor="@color/white"/>
+
+            <Button
+                android:id="@+id/btn_loginregist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/punyaakun"
+                android:layout_marginTop="300dp"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="#6E6E6C"
+                android:text="Login" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
