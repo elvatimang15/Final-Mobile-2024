@@ -43,6 +43,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/nama_regist"
             android:layout_marginTop="20dp"
+            android:inputType="numberPassword"
             android:drawableLeft="@drawable/baseline_security_24"
             android:hint="Password"/>
 
