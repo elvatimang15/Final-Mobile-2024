@@ -44,5 +44,9 @@ public class CartManager {
         }
         return total;
     }
-}
 
+    // Tambahkan metode ini untuk menghapus semua item di keranjang
+    public void clearCart() {
+        cartItems.clear();
+    }
+}

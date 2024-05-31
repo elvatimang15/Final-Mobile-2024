@@ -108,6 +108,11 @@ public class DbConfig extends SQLiteOpenHelper {
         return userId;
     }
 
+    public void saveTimestamp(int userId, long timestamp) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE " + TABLE_NAME + " SET " + COLUMN_CREATED_AT + " = ? WHERE " + COLUMN_ID + " = ?", new Object[]{timestamp, userId});
+    }
+
     public long getTimestamp(int userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_NAME, new String[]{COLUMN_CREATED_AT}, COLUMN_ID + "=?",

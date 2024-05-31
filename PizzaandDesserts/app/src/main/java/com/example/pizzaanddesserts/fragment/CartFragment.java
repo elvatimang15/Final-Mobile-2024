@@ -77,7 +77,12 @@ public class CartFragment extends Fragment {
                 dbConfig.updateIncome(userId, total);
                 Toast.makeText(getContext(), "Total price saved to database", Toast.LENGTH_SHORT).show();
 
-                loadTimestamp();
+                long timestamp = System.currentTimeMillis();
+                dbConfig.saveTimestamp(userId, timestamp);
+                loadTimestamp(timestamp);
+
+                // Hapus pesanan setelah total dihitung
+                clearCart();
             } else {
                 Toast.makeText(getContext(), "Failed to get user ID", Toast.LENGTH_SHORT).show();
             }
@@ -85,15 +90,16 @@ public class CartFragment extends Fragment {
 
         return view;
     }
-    private void loadTimestamp() {
-        long timestamp = dbConfig.getTimestamp(userId);
-        if (timestamp != -1) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-            String timestampStr = sdf.format(new Date(timestamp));
-            String displayText = "Created at " + timestampStr;
-            tvTimestamp.setText(displayText);
-        } else {
-            tvTimestamp.setText("Timestamp not found");
-        }
+
+    private void loadTimestamp(long timestamp) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        String timestampStr = sdf.format(new Date(timestamp));
+        String displayText = "Created at " + timestampStr;
+        tvTimestamp.setText(displayText);
+    }
+
+    private void clearCart() {
+        CartManager.getInstance().clearCart();
+        cartAdapter.notifyDataSetChanged();
     }
 }
