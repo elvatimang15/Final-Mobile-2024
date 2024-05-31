@@ -108,6 +108,19 @@ public class DbConfig extends SQLiteOpenHelper {
         return userId;
     }
 
+    public long getTimestamp(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME, new String[]{COLUMN_CREATED_AT}, COLUMN_ID + "=?",
+                new String[]{String.valueOf(userId)}, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            long timestamp = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_CREATED_AT));
+            cursor.close();
+            return timestamp;
+        } else {
+            return -1;
+        }
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }

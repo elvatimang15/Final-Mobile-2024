@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 
 public interface ApiService {
-    String RAPID_API_KEY = "23f27a016bmsh0e7c72db3452422p1cefc5jsnc237f3518b65";
+    String RAPID_API_KEY = "0b66805af9msh7c9a749bb106de0p1f4172jsn2afa94dd9b92";
     String RAPID_API_HOST = "pizza-and-desserts.p.rapidapi.com";
 
     @Headers({

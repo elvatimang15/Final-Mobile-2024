@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,7 @@ import com.example.pizzaanddesserts.api.ApiService;
 import com.example.pizzaanddesserts.api.RetrofitClient;
 import com.example.pizzaanddesserts.models.PizzaModel;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,10 +50,11 @@ public class PizzaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pizza, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
         progressBar = view.findViewById(R.id.progresspizza);
-        searchView = view.findViewById(R.id.search_pizza); // Pastikan menggunakan androidx.appcompat.widget.SearchView
+        searchView = view.findViewById(R.id.search_pizza);
         context = getContext();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setVisibility(View.GONE);
 
         apiService = RetrofitClient.getClient().create(ApiService.class);
 
@@ -81,39 +85,47 @@ public class PizzaFragment extends Fragment {
     }
 
     private void fetchDataFromApi(String query) {
+        recyclerView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
-        Call<List<PizzaModel>> call = apiService.getPizza();
-        call.enqueue(new Callback<List<PizzaModel>>() {
-            @Override
-            public void onResponse(Call<List<PizzaModel>> call, Response<List<PizzaModel>> response) {
-                progressBar.setVisibility(View.GONE);
 
-                if (response.isSuccessful() && response.body() != null) {
-                    pizzaModel.clear(); // Clear old data
-                    if (query == null || query.isEmpty()) {
-                        pizzaModel.addAll(response.body());
-                    } else {
-                        for (PizzaModel pizza : response.body()) {
-                            if (pizza.getName().toLowerCase().contains(query.toLowerCase())) {
-                                pizzaModel.add(pizza);
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            Call<List<PizzaModel>> call = apiService.getPizza();
+            call.enqueue(new Callback<List<PizzaModel>>() {
+                @Override
+                public void onResponse(Call<List<PizzaModel>> call, Response<List<PizzaModel>> response) {
+                    progressBar.setVisibility(View.GONE);
+
+                    if (response.isSuccessful() && response.body() != null) {
+                        pizzaModel.clear(); // Clear old data
+                        if (query == null || query.isEmpty()) {
+                            pizzaModel.addAll(response.body());
+                        } else {
+                            for (PizzaModel pizza : response.body()) {
+                                if (pizza.getName().toLowerCase().contains(query.toLowerCase())) {
+                                    pizzaModel.add(pizza);
+                                }
+                            }
+                            if (pizzaModel.isEmpty()) {
+                                Toast.makeText(context, "Data kosong", Toast.LENGTH_SHORT).show();
                             }
                         }
-                        if (pizzaModel.isEmpty()) {
-                            Toast.makeText(context, "Data kosong", Toast.LENGTH_SHORT).show();
-                        }
+                        pizzaAdapter.notifyDataSetChanged();
+                        recyclerView.setVisibility(View.VISIBLE);
+                    } else {
+                        Toast.makeText(context, "Failed to get data", Toast.LENGTH_SHORT).show();
                     }
-                    pizzaAdapter.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(context, "Failed to get data", Toast.LENGTH_SHORT).show();
                 }
-            }
 
-            @Override
-            public void onFailure(Call<List<PizzaModel>> call, Throwable t) {
-                progressBar.setVisibility(View.GONE);
-                Log.d("anu", t.getMessage());
-                Toast.makeText(context, "Failed to get data: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<List<PizzaModel>> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                    if (t instanceof UnknownHostException) {
+                        Toast.makeText(context, "Tidak ada koneksi internet", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Failed to get data: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }, 2000);
     }
 }

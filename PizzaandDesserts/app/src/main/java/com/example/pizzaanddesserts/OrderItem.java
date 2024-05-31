@@ -1,7 +1,5 @@
 package com.example.pizzaanddesserts;
 
-import android.util.Log;
-
 import com.example.pizzaanddesserts.models.DessertModel;
 import com.example.pizzaanddesserts.models.PizzaModel;
 

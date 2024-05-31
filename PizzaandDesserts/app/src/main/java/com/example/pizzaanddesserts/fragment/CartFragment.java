@@ -1,6 +1,5 @@
 package com.example.pizzaanddesserts.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,33 +19,35 @@ import com.example.pizzaanddesserts.R;
 import com.example.pizzaanddesserts.adapter.CartAdapter;
 import com.example.pizzaanddesserts.sqlite.DbConfig;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class CartFragment extends Fragment {
     private RecyclerView recyclerView;
     private CartAdapter cartAdapter;
     private TextView totalHarga;
+    private TextView tvTimestamp;
     private Button btnTotal;
     private DbConfig dbConfig;
-    private int userId; // Replace with the actual user ID logic
+    private int userId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerView);
         totalHarga = view.findViewById(R.id.total_harga);
+        tvTimestamp = view.findViewById(R.id.tv_timestamp);
         btnTotal = view.findViewById(R.id.btn_total);
         dbConfig = new DbConfig(getContext());
 
-        // Ambil ID user dari database
         userId = dbConfig.getLoggedInUserId();
 
-        // Debug: Print view references to log
         if (recyclerView == null) {
             Log.e("CartFragment", "RecyclerView is null");
         }
@@ -57,7 +58,6 @@ public class CartFragment extends Fragment {
             Log.e("CartFragment", "BtnTotal Button is null");
         }
 
-        // Verify that the views are not null
         if (recyclerView == null || totalHarga == null || btnTotal == null) {
             throw new RuntimeException("View not found in fragment_cart.xml");
         }
@@ -73,15 +73,27 @@ public class CartFragment extends Fragment {
             int total = CartManager.getInstance().getTotalPrice();
             totalHarga.setText(String.format("Rp. %d", total));
 
-            // Save the total price to the database
             if (userId != -1) {
                 dbConfig.updateIncome(userId, total);
                 Toast.makeText(getContext(), "Total price saved to database", Toast.LENGTH_SHORT).show();
+
+                loadTimestamp();
             } else {
                 Toast.makeText(getContext(), "Failed to get user ID", Toast.LENGTH_SHORT).show();
             }
         });
 
         return view;
+    }
+    private void loadTimestamp() {
+        long timestamp = dbConfig.getTimestamp(userId);
+        if (timestamp != -1) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            String timestampStr = sdf.format(new Date(timestamp));
+            String displayText = "Created at " + timestampStr;
+            tvTimestamp.setText(displayText);
+        } else {
+            tvTimestamp.setText("Timestamp not found");
+        }
     }
 }

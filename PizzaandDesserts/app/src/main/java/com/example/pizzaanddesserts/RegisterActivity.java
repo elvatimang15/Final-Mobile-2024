@@ -24,7 +24,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         dbConfig = new DbConfig(this);
 
-        // Initialize the views
         namaRegist = findViewById(R.id.nama_regist);
         passRegist = findViewById(R.id.pass_regist);
         btnRegist = findViewById(R.id.btn_regist);
@@ -35,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
             String password = passRegist.getText().toString().trim();
 
             if (!username.isEmpty() && !password.isEmpty()) {
-                dbConfig.insertData(username, password, "0", 0); // Initial phone and income values set to 0
+                dbConfig.insertData(username, password, "0", 0);
 
                 Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));

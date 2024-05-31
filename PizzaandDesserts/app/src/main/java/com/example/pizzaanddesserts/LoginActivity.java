@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
 
         dbConfig = new DbConfig(this);
 
-        // Initialize the views
         namaLogin = findViewById(R.id.nama_login);
         passLogin = findViewById(R.id.pass_login);
         btnLogin = findViewById(R.id.btn_login);

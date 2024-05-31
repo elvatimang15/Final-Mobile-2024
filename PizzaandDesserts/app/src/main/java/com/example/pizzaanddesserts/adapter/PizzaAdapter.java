@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,12 +21,10 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder>{
     private List<PizzaModel> pizzaModel;
     private Context context;
 
-    // Tambahkan interface untuk menangani klik
     public interface OnPizzaOrderListener {
         void onPizzaOrder(PizzaModel pizzaModel, int orderCount);
     }
 
-    // Tambahkan listener di adapter
     private OnPizzaOrderListener pizzaOrderListener;
 
     public PizzaAdapter(List<PizzaModel> pizzaModel, Context context, OnPizzaOrderListener listener) {
@@ -79,7 +76,6 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder>{
         }
 
         public void bind(PizzaModel pizzaModel) {
-            // Load image using Picasso library
             Picasso.get().load(pizzaModel.getImg()).into(iv_img);
             tv_name.setText(pizzaModel.getName());
             tv_veg.setText(pizzaModel.getVeg());

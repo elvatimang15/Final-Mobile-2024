@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_profile"
+    android:background="#B19A73"
     tools:context=".fragment.ProfileFragment">
 
         <LinearLayout
@@ -19,9 +19,18 @@
                 android:layout_marginTop="16dp"
                 android:layout_gravity="center"
                 android:text="Account Detail"
-                android:textColor="#403737"
+                android:textColor="#2B2424"
                 android:textSize="30sp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="6dp"
+                android:background="#494848" />
 
             <TextView
                 android:id="@+id/tv_welcome"
@@ -128,7 +137,7 @@
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:backgroundTint="#DFB549"
+                android:backgroundTint="#785831"
                 android:text="Change" />
 
             <Button
@@ -137,7 +146,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="#DF9749"
+                android:backgroundTint="#B58249"
                 android:text="Logout" />
 
             <ImageView

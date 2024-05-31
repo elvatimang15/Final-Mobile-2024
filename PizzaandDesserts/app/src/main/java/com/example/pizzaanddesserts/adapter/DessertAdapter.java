@@ -24,8 +24,6 @@ public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.ViewHold
     public interface OnDessertOrderListener {
         void onDessertOrder(DessertModel dessertModel, int orderCount);
     }
-
-    // Tambahkan listener di adapter
     private OnDessertOrderListener dessertOrderListener;
 
     public DessertAdapter(List<DessertModel> dessertModel, Context context, OnDessertOrderListener listener) {
@@ -75,7 +73,6 @@ public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.ViewHold
         }
 
         public void bind(DessertModel dessertModel) {
-            // Load image using Picasso library
             Picasso.get().load(dessertModel.getImg()).into(iv_imgd);
             tv_named.setText(dessertModel.getName());
             int originalPrice = Integer.parseInt(dessertModel.getPrice());

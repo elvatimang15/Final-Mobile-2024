@@ -26,7 +26,6 @@ public class EditProfileActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_edit_profile);
 
-        // Inisialisasi objek database
         dbConfig = new DbConfig(this);
 
         et_name = findViewById(R.id.et_username);

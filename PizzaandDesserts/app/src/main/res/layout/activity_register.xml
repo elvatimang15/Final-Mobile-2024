@@ -5,42 +5,33 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_register"
+    android:background="#F1CA7D"
     tools:context=".RegisterActivity">
+
+    <TextView
+        android:id="@+id/regist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:text="REGISTER"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@color/black"/>
 
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="350dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
-        android:background="#DCAFAAAA"
+        android:background="@drawable/bg_white"
         app:cardCornerRadius="10dp">
-
-        <TextView
-            android:id="@+id/regist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="REGISTER"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@color/white"/>
-
-        <View
-            android:id="@+id/view_regist"
-            android:layout_width="260dp"
-            android:layout_height="2dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:layout_below="@+id/regist"/>
 
         <EditText
             android:id="@+id/nama_regist"
             android:layout_width="250dp"
             android:layout_height="48dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/view_regist"
             android:layout_marginTop="15dp"
             android:drawableLeft="@drawable/baseline_account_circle_24"
             android:hint="Nama"/>
@@ -76,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:text="Punya akun?"
                 android:layout_marginTop="315dp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/black"/>
 
             <Button
                 android:id="@+id/btn_loginregist"
